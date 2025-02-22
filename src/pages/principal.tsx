@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { extendTheme } from '@mui/material/styles';
 import { AppProvider, Navigation, Router } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import AgricultureIcon from '@mui/icons-material/Agriculture';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import GroupIcon from '@mui/icons-material/Group';
 import ProdutoresPage from './components/produtoresPage';
+import GiteIcon from '@mui/icons-material/Gite';
+import FazendasPage from './components/fazendasPage';
 
 const NAVIGATION: Navigation = [
     /*{
@@ -26,9 +27,17 @@ const NAVIGATION: Navigation = [
         action: <AssessmentIcon />
     },
     {
+        kind: 'divider',
+    },
+    {
         segment: "produtores",
         title: "Produtores",
         action: <GroupIcon />
+    },
+    {
+        segment: "fazendas",
+        title: "Fazendas",
+        action: <GiteIcon />
     }
     /*{
         segment: 'reports',
@@ -51,7 +60,8 @@ const NAVIGATION: Navigation = [
 //mapeamento das páginas
 const PAGES: Record<string, React.ReactNode> = {
     visaoGeral: <p>tlf</p>,
-    produtores: <ProdutoresPage />
+    produtores: <ProdutoresPage />,
+    fazendas: <FazendasPage />
 }
 
 //simula as rotas da aplicação, para ter a renderização dos menus

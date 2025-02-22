@@ -154,6 +154,25 @@ function ProdutoresPage() {
         setShowModalConfirmacao(!showModalConfirmacao)
     }
 
+    //pesquisando por produtor. Procurando por nome
+    function PesquisarProdutor(input: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+
+        const nome = input.target.value
+
+        if (nome != "") {
+            const produtoresEncontrados = listaDeProdutores.filter(function (produtor) {
+
+                return produtor.nome.toLowerCase().includes(nome.toLowerCase())
+            })
+
+            setListaDeProdutores(produtoresEncontrados)
+        }
+        else {
+
+            carregarProdutores()
+        }
+    }
+
     useEffect(function () {
 
         carregarProdutores()
@@ -161,10 +180,9 @@ function ProdutoresPage() {
 
     return (
         <Card>
-
             <div className="row p-2">
                 <div className="col-sm col-md-6 col-lg-9">
-                    <TextField fullWidth id="search" label="Pesquisar por Produtor" variant="outlined" />
+                    <TextField onChange={PesquisarProdutor} fullWidth id="search" label="Pesquisar por Produtor" variant="outlined" />
                 </div>
                 <div className="col-sm col-md-6 col-lg-3 mt-2">
                     <Button onClick={function () {
