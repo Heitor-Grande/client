@@ -14,7 +14,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import axios from "axios";
-import typeProdutor from "../interfaces/produtor";
+import typeProdutor from "../../interfaces/produtor";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalConfirmacao from "./components/modalConfirmacao";
 

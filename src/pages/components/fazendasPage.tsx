@@ -12,13 +12,13 @@ import Paper from '@mui/material/Paper';
 import { useEffect, useState } from "react";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import fazendaType from "../interfaces/fazendaType";
+import fazendaType from "../../interfaces/fazendaType";
 import axios from "axios";
-import typeProdutor from "../interfaces/produtor";
+import typeProdutor from "../../interfaces/produtor";
 import MenuItem from '@mui/material/MenuItem';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import DeleteIcon from '@mui/icons-material/Delete';
-import typeListaFazenda from "../interfaces/listaFazenda";
+import typeListaFazenda from "../../interfaces/listaFazenda";
 import ModalConfirmacao from "./components/modalConfirmacao";
 
 function FazendasPage() {
@@ -111,14 +111,18 @@ function FazendasPage() {
     function setValueAreaTotalHectares(input: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 
         const areaTotal = input.target.value.replace(/[^\d.]/g, '')
-
+        
         if (areaTotal != "") {
 
             setValuesFazenda("areatotal_hectares", areaTotal)
         }
         else {
-
-            setValuesFazenda("areatotal_hectares", null)
+            setFazenda({
+                ...Fazenda,
+                areatotal_hectares: "",
+                areaagricutavel_hectares: "",
+                areavegetacao_hectares: ""
+            })
         }
     }
 
@@ -168,7 +172,7 @@ function FazendasPage() {
             const areaTotalFazenda = Fazenda.areatotal_hectares == "" ? 0 : Fazenda.areatotal_hectares
 
             if (calcArea <= areaTotalFazenda) {
-                console.log("entrou aqui")
+
                 setValuesFazenda("areavegetacao_hectares", areaTotal)
             }
             else {
@@ -276,7 +280,7 @@ function FazendasPage() {
 
         const nome_fazenda = input.target.value
         if (nome_fazenda != "") {
-            
+
             const fazendaEncontrada = listaFazendas.filter(function (fazenda) {
 
                 return fazenda.nome_fazenda.toLowerCase().includes(nome_fazenda)
