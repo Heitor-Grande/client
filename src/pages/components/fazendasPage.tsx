@@ -111,7 +111,7 @@ function FazendasPage() {
     function setValueAreaTotalHectares(input: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 
         const areaTotal = input.target.value.replace(/[^\d.]/g, '')
-        
+
         if (areaTotal != "") {
 
             setValuesFazenda("areatotal_hectares", areaTotal)
@@ -372,7 +372,7 @@ function FazendasPage() {
                     <form onSubmit={onSubmitFazenda}>
                         <div className="container-fluid">
                             <div className="row border-bottom">
-                                <p><strong>Cadastrando nova Fazenda</strong></p>
+                                <p><strong>{Fazenda.idfazenda == null ? "Cadastrando nova Fazenda" : "Editando Fazenda"}</strong></p>
                             </div>
                             <div className="row">
                                 <div className="col-sm col-md-4 col-lg-8 mt-3">
@@ -383,6 +383,7 @@ function FazendasPage() {
                                         fullWidth
                                         id="outlined-select-currency"
                                         select
+                                        required
                                         value={Fazenda.idprodutor}
                                         label="Produtor"
                                         onChange={setValueProdutorFazenda}
@@ -433,7 +434,6 @@ function FazendasPage() {
             </Modal>
             <ModalConfirmacao
                 texto={`Confirmar a exclusão do registro da Fazenda "${Fazenda.nome_fazenda}"? Isso vai excluir todas as informações relacionadas.`}
-                id={0}
                 url={`fazenda/deletar/${Fazenda.idfazenda}`}
                 show={showModalConfirmacao}
                 openClose={setShowModalConfirmacaoClick}

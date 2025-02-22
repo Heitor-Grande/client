@@ -6,7 +6,6 @@ import axios from "axios";
 
 interface modalConfirmacaoType {
     texto: string
-    id: number
     url: string
     show: boolean
     openClose: () => void
@@ -25,7 +24,7 @@ const style = {
     boxShadow: 24,
     p: 4,
 }
-function ModalConfirmacao({ texto, id, url, show, openClose, funcAuxiliar }: modalConfirmacaoType) {
+function ModalConfirmacao({ texto, url, show, openClose, funcAuxiliar }: modalConfirmacaoType) {
 
     function excluirRegistro(e: React.FormEvent<HTMLFormElement>) {
 

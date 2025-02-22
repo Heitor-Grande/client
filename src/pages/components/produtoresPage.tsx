@@ -258,7 +258,6 @@ function ProdutoresPage() {
             </Modal>
             <ModalConfirmacao
                 texto={`Confirmar a exclusão do registro do Produtor ${produtor.nome}? Isso vai excluir todas as informações relacionadas.`}
-                id={0}
                 url={`produtor/deletar/cadastro/${produtor.idprodutor}`}
                 show={showModalConfirmacao}
                 openClose={setShowModalConfirmacaoClick}
