@@ -1,4 +1,4 @@
-import { Button } from "@mui/material"
+import { Button, Link } from "@mui/material"
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import TextField from '@mui/material/TextField';
 import Table from '@mui/material/Table';
@@ -8,11 +8,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
+import axios from "axios";
+import typeProdutor from "../interfaces/produtor";
+import DeleteIcon from '@mui/icons-material/Delete';
+import ModalConfirmacao from "./components/modalConfirmacao";
 
 function ProdutoresPage() {
 
@@ -22,7 +26,7 @@ function ProdutoresPage() {
         top: '35%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 1000,
+        width: "85%",
         bgcolor: 'background.paper',
         border: '1px solid #000',
         boxShadow: 24,
@@ -32,17 +36,13 @@ function ProdutoresPage() {
     //controla show do Modal de produtor para criar, editar.
     const [showModalProdutor, setShowModalProdutor] = useState(false)
     function setShowModalProdutorClick() {
+
         setShowModalProdutor(!showModalProdutor)
     }
 
-    //fução de submit para criar ou editar produtor
-    function onSubmitProdutor(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-        setShowModalProdutorClick()
-    }
-
     //produtor
-    const [produtor, setProdutor] = useState({
+    const [produtor, setProdutor] = useState<typeProdutor>({
+        idprodutor: null,
         doc: "",
         nome: ""
     })
@@ -98,6 +98,67 @@ function ProdutoresPage() {
         setValuesProdutor("doc", doc)
     }
 
+    //fução de submit para criar ou editar produtor
+    function onSubmitProdutor(e: React.FormEvent<HTMLFormElement>) {
+
+        e.preventDefault()
+        if (produtor.idprodutor == null) {
+            axios.post(process.env.REACT_APP_API_PRODUTORES + "produtor/criar/novo", produtor)
+                .then(function (resposta) {
+                    //console.log(resposta)
+                    setShowModalProdutorClick()
+                    carregarProdutores()
+                }).catch(function (erro) {
+                    //console.log(erro)
+                    alert(erro.response.data.message || "Erro ao criar novo Produtor.")
+                })
+        }
+        else {
+            axios.put(process.env.REACT_APP_API_PRODUTORES + `produtor/atualizar/cadastro/${produtor.idprodutor}`, produtor)
+                .then(function (resposta) {
+                    //console.log(resposta)
+                    alert(resposta.data)
+                    setShowModalProdutorClick()
+                    carregarProdutores()
+                }).catch(function (erro) {
+                    //console.log(erro)
+                    alert(erro.response.data.message || "Erro ao atualizar cadastro do Produtor.")
+                })
+        }
+    }
+
+    //function para carregar os produtores cadastrados
+    const [listaDeProdutores, setListaDeProdutores] = useState<typeProdutor[]>([])
+    function carregarProdutores() {
+
+        axios.get(process.env.REACT_APP_API_PRODUTORES + "produtor/carregar/produtores")
+            .then(function (resposta) {
+                //console.log(resposta.data)
+                setListaDeProdutores(resposta.data)
+            }).catch(function (erro) {
+                //console.log(erro)
+                alert(erro.response.data.message || "Erro ao carregar lista de Produtores")
+            })
+    }
+
+    //função que abre o modal de produtores com dados carregados
+    function selecionarProdutor(produtor: typeProdutor) {
+
+        setProdutor(produtor)
+        setShowModalProdutorClick()
+    }
+
+    //manipulando modal de confirmação de ação
+    const [showModalConfirmacao, setShowModalConfirmacao] = useState(false)
+    function setShowModalConfirmacaoClick() {
+        setShowModalConfirmacao(!showModalConfirmacao)
+    }
+
+    useEffect(function () {
+
+        carregarProdutores()
+    }, [])
+
     return (
         <Card>
 
@@ -106,7 +167,14 @@ function ProdutoresPage() {
                     <TextField fullWidth id="search" label="Pesquisar por Produtor" variant="outlined" />
                 </div>
                 <div className="col-sm col-md-6 col-lg-3 mt-2">
-                    <Button onClick={setShowModalProdutorClick} fullWidth variant="contained" startIcon={<PlaylistAddIcon />}>Novo Produtor</Button>
+                    <Button onClick={function () {
+                        setProdutor({
+                            idprodutor: null,
+                            doc: "",
+                            nome: ""
+                        })
+                        setShowModalProdutorClick()
+                    }} fullWidth variant="contained" startIcon={<PlaylistAddIcon />}>Novo Produtor</Button>
                 </div>
             </div>
             <div className="row">
@@ -116,20 +184,28 @@ function ProdutoresPage() {
                             <TableRow>
                                 <TableCell>Produtor</TableCell>
                                 <TableCell align="center">CPF/CNPJ</TableCell>
+                                <TableCell align="center">Ações</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {/*rows.map((row) => (
-                                    <TableRow
-                                        key={row.name}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="row">
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="center">{row.calories}</TableCell>
-                                    </TableRow>
-                                ))*/}
+                            {listaDeProdutores.map(function (produtor: typeProdutor) {
+                                return <TableRow
+                                    key={produtor.idprodutor}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        <Link component="button" onClick={function () { selecionarProdutor(produtor) }}>{produtor.nome}</Link>
+                                    </TableCell>
+                                    <TableCell align="center">{produtor.doc}</TableCell>
+                                    <TableCell align="center">
+                                        <Button onClick={function () {
+                                            setProdutor(produtor)
+                                            setShowModalConfirmacaoClick()
+                                        }} color="error"><DeleteIcon fontSize="small" /></Button>
+                                    </TableCell>
+                                </TableRow>
+                            })}
+
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -146,24 +222,32 @@ function ProdutoresPage() {
                             <div className="row border-bottom">
                                 <p><strong>Cadastrando novo Produtor</strong></p>
                             </div>
-                            <div className="row mt-3">
-                                <div className="col-sm col-md-6 col-lg-8">
+                            <div className="row">
+                                <div className="col-sm col-md-6 col-lg-8 mt-3">
                                     <TextField onChange={setValueNomeProdutor} value={produtor.nome} required fullWidth id="outlined-basic" label="Nome" variant="outlined" />
                                 </div>
-                                <div className="col-sm col-md-6 col-lg-4">
+                                <div className="col-sm col-md-6 col-lg-4 mt-3">
                                     <TextField onBlur={mascaraDoc} onChange={setValueDocProdutor} value={produtor.doc} required fullWidth id="outlined-basic" label="Doc" variant="outlined" />
                                 </div>
                             </div>
                             <div className="row mt-3">
-                                <div className="float-right">
-                                    <Button onClick={setShowModalProdutorClick} fullWidth variant="contained" startIcon={<AssignmentTurnedInIcon />}>Finalizar Cadastro</Button>
-                                </div>
+                                <Button type="submit" fullWidth variant="contained" startIcon={<AssignmentTurnedInIcon />}>
+                                    {produtor.idprodutor == null ? "Finalizar Cadastro" : "Atualizar Produtor"}
+                                </Button>
                             </div>
                         </div>
                     </form>
                 </Box>
             </Modal>
-        </Card>
+            <ModalConfirmacao
+                texto={`Confirmar a exclusão do registro do Produtor ${produtor.nome}? Isso vai excluir todas as informações relacionadas.`}
+                id={0}
+                url={`produtor/deletar/cadastro/${produtor.idprodutor}`}
+                show={showModalConfirmacao}
+                openClose={setShowModalConfirmacaoClick}
+                funcAuxiliar={carregarProdutores}
+            />
+        </Card >
     )
 }
 export default ProdutoresPage
