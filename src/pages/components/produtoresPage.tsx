@@ -117,7 +117,6 @@ function ProdutoresPage() {
             axios.put(process.env.REACT_APP_API_PRODUTORES + `produtor/atualizar/cadastro/${produtor.idprodutor}`, produtor)
                 .then(function (resposta) {
                     //console.log(resposta)
-                    alert(resposta.data)
                     setShowModalProdutorClick()
                     carregarProdutores()
                 }).catch(function (erro) {
@@ -238,7 +237,7 @@ function ProdutoresPage() {
                     <form onSubmit={onSubmitProdutor}>
                         <div className="container-fluid">
                             <div className="row border-bottom">
-                                <p><strong>Cadastrando novo Produtor</strong></p>
+                                <p><strong>{produtor.idprodutor == null ? 'Cadastrando novo Produtor' : 'Editando Produtor'}</strong></p>
                             </div>
                             <div className="row">
                                 <div className="col-sm col-md-6 col-lg-8 mt-3">

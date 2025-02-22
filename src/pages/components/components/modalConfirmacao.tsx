@@ -33,7 +33,6 @@ function ModalConfirmacao({ texto, id, url, show, openClose, funcAuxiliar }: mod
 
         axios.delete(process.env.REACT_APP_API_PRODUTORES + url).then(function (resposta) {
 
-            alert(resposta.data)
             openClose()
             if (funcAuxiliar) {
                 funcAuxiliar()
