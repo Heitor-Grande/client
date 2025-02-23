@@ -12,15 +12,12 @@ O **Gerenciamento para Produtores Rurais** é uma aplicação web que permite ca
 
 ## Estrutura do Projeto
 
-A estrutura do projeto está organizada da seguinte forma:
-/client
-├── .env                  # Variáveis de ambiente
-├── /src
-│   ├── app.tsx           # Controle das rotas do sistema utilizando react-router-dom
-│   ├── /pages            # Contém as páginas da aplicação
-│   │   ├── principal.tsx # Arquivo de grande importância que gerencia a renderização das Pages
-│   │   ├── /components   # Contém os componentes HTML das páginas, como "Visão Geral", "Produtores", etc.
-│   │   │   ├── /components # Componentes utilizados nas Pages dentro de "/src/pages/components"
+- **/.env**: Contém as variáveis de ambiente necessárias para o funcionamento da aplicação.
+- **/src/app.tsx**: Arquivo principal que controla as rotas da aplicação utilizando `react-router-dom`.
+- **/src/pages**: Contém os arquivos principais das páginas da aplicação.
+  - **/src/pages/principal.tsx**: Arquivo de grande importância, pois é responsável pela renderização das páginas através de rotas.
+- **/src/pages/components**: Contém os componentes HTML específicos das páginas, como "Visão Geral", "Produtores", etc.
+- **/src/pages/components/components**: Contém componentes auxiliares que são utilizados nas páginas dentro de "/src/pages/components".
 
 
 ## Instalação
