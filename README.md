@@ -1,6 +1,6 @@
 # Gerenciamento para Produtores Rurais
 
-O **Gerenciamento para Produtores Rurais** é uma aplicação web que permite cadastrar produtores agrícolas e suas fazendas, vincular safra às fazendas e cadastrar culturas nas safra, proporcionando uma gestão eficiente para o produtor rural.
+O **Gerenciamento para Produtores Rurais** é uma aplicação web que permite cadastrar produtores agrícolas e suas fazendas, vincular safra às fazendas e cadastrar culturas nas safra, proporcionando uma visão geral das fazendas, safras e culturas.
 
 ## Tecnologias Utilizadas
 
