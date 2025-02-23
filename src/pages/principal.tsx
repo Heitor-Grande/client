@@ -11,6 +11,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import SafraPage from './components/safraPage';
 import CulturaPage from './components/culturaPage';
 import GrassIcon from '@mui/icons-material/Grass';
+import VisaoGeral from './components/visaoGeral';
 
 const NAVIGATION: Navigation = [
     /*{
@@ -73,7 +74,7 @@ const NAVIGATION: Navigation = [
 ]
 //mapeamento das páginas
 const PAGES: Record<string, React.ReactNode> = {
-    visaoGeral: <p>tlf</p>,
+    visaoGeral: <VisaoGeral />,
     produtores: <ProdutoresPage />,
     fazendas: <FazendasPage />,
     safras: <SafraPage />,
