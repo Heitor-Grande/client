@@ -181,7 +181,7 @@ function ProdutoresPage() {
         <Card>
             <div className="row p-2">
                 <div className="col-sm col-md-6 col-lg-9">
-                    <TextField onChange={PesquisarProdutor} fullWidth id="search" label="Pesquisar por Produtor" variant="outlined" />
+                    <TextField onChange={PesquisarProdutor} fullWidth id="searchprodutor" label="Pesquisar por Produtor" variant="outlined" />
                 </div>
                 <div className="col-sm col-md-6 col-lg-3 mt-2">
                     <Button onClick={function () {

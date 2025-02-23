@@ -9,6 +9,8 @@ import GiteIcon from '@mui/icons-material/Gite';
 import FazendasPage from './components/fazendasPage';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import SafraPage from './components/safraPage';
+import CulturaPage from './components/culturaPage';
+import GrassIcon from '@mui/icons-material/Grass';
 
 const NAVIGATION: Navigation = [
     /*{
@@ -45,6 +47,11 @@ const NAVIGATION: Navigation = [
         segment: "safras",
         title: "Safras",
         action: <LocalShippingIcon />
+    },
+    {
+        segment: "culturas",
+        title: "Culturas",
+        action: <GrassIcon />
     }
     /*{
         segment: 'reports',
@@ -69,7 +76,8 @@ const PAGES: Record<string, React.ReactNode> = {
     visaoGeral: <p>tlf</p>,
     produtores: <ProdutoresPage />,
     fazendas: <FazendasPage />,
-    safras: <SafraPage />
+    safras: <SafraPage />,
+    culturas: <CulturaPage />
 }
 
 //simula as rotas da aplicação, para ter a renderização dos menus

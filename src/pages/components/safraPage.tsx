@@ -184,7 +184,7 @@ function SafraPage() {
 
             const safrasEncontradas = listaDeSafras.filter(function (safra) {
 
-                return safra.safra.toLowerCase().includes(safra_)
+                return safra.safra.toLowerCase().includes(safra_.toLocaleLowerCase())
             })
 
             setListaDeSafras(safrasEncontradas)
@@ -198,7 +198,7 @@ function SafraPage() {
         <Card>
             <div className="row p-2">
                 <div className="col-sm col-md-6 col-lg-9">
-                    <TextField onChange={buscarSafra} fullWidth id="search" label="Pesquisar por Safra" variant="outlined" />
+                    <TextField onChange={buscarSafra} fullWidth id="searchsafra" label="Pesquisar por Safra" variant="outlined" />
                 </div>
                 <div className="col-sm col-md-6 col-lg-3 mt-2">
                     <Button onClick={function () {

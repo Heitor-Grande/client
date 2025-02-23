@@ -283,7 +283,7 @@ function FazendasPage() {
 
             const fazendaEncontrada = listaFazendas.filter(function (fazenda) {
 
-                return fazenda.nome_fazenda.toLowerCase().includes(nome_fazenda)
+                return fazenda.nome_fazenda.toLowerCase().includes(nome_fazenda.toLowerCase())
             })
 
             setListaFazendas(fazendaEncontrada)
@@ -301,7 +301,7 @@ function FazendasPage() {
         <Card>
             <div className="row p-2">
                 <div className="col-sm col-md-6 col-lg-9">
-                    <TextField onChange={buscarFazenda} fullWidth id="search" label="Pesquisar por Fazenda" variant="outlined" />
+                    <TextField onChange={buscarFazenda} fullWidth id="searchfazenda" label="Pesquisar por Fazenda" variant="outlined" />
                 </div>
                 <div className="col-sm col-md-6 col-lg-3 mt-2">
                     <Button onClick={function () {
