@@ -16,8 +16,8 @@ O **Gerenciamento para Produtores Rurais** é uma aplicação web que permite ca
 - **/src/app.tsx**: Arquivo principal que controla as rotas da aplicação utilizando `react-router-dom`.
 - **/src/pages**: Contém os arquivos principais das páginas da aplicação.
   - **/src/pages/principal.tsx**: Arquivo de grande importância, pois é responsável pela renderização das páginas através de rotas.
-- **/src/pages/components**: Contém os componentes HTML específicos das páginas, como "Visão Geral", "Produtores", etc.
-- **/src/pages/components/components**: Contém componentes auxiliares que são utilizados nas páginas dentro de "/src/pages/components".
+  - **/src/pages/components**: Contém os componentes HTML específicos das páginas, como "Visão Geral", "Produtores", etc.
+  - **/src/pages/components/components**: Contém componentes auxiliares que são utilizados nas páginas dentro de "/src/pages/components".
 
 
 ## Instalação
