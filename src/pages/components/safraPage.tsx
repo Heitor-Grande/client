@@ -53,10 +53,8 @@ function SafraPage() {
 
     //style do modal
     const style = {
-        position: 'absolute',
-        top: '35%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        margin: "auto",
+        marginTop: "5%",
         width: "85%",
         bgcolor: 'background.paper',
         border: '1px solid #000',
@@ -273,11 +271,11 @@ function SafraPage() {
                             <div className="row border-bottom">
                                 <p><strong>{safra.idsafra == 0 ? "Cadastrando nova Safra" : "Editando Safra"}</strong></p>
                             </div>
-                            <div className="row mt-3">
-                                <div className="col-sm col-md-6 col-lg-6">
+                            <div className="row">
+                                <div className="col-sm col-md-6 col-lg-6 mt-3">
                                     <TextField required value={safra.safra} disabled onChange={setValueSafra} fullWidth id="safra" label="Safra" variant="outlined" />
                                 </div>
-                                <div className="col-sm col-md-6 col-lg-3">
+                                <div className="col-sm col-md-6 col-lg-3 mt-3">
                                     <TextField
                                         fullWidth
                                         required
@@ -295,7 +293,7 @@ function SafraPage() {
                                         ))}
                                     </TextField>
                                 </div>
-                                <div className="col-sm col-md-6 col-lg-3">
+                                <div className="col-sm col-md-6 col-lg-3 mt-3">
                                     <TextField
                                         fullWidth
                                         required

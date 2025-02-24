@@ -25,10 +25,8 @@ function FazendasPage() {
 
     //style do modal
     const style = {
-        position: 'absolute',
-        top: '35%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        margin: "auto",
+        marginTop: "5%",
         width: "85%",
         bgcolor: 'background.paper',
         border: '1px solid #000',
@@ -363,6 +361,7 @@ function FazendasPage() {
                 </TableContainer>
             </div>
             <Modal
+                sx={{ overflow: "auto" }}
                 open={showModalFazenda}
                 onClose={setShowModalFazendaClick}
                 aria-labelledby="modal-modal-title"

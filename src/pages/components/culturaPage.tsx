@@ -54,10 +54,8 @@ function CulturaPage() {
 
     //style do modal
     const style = {
-        position: 'absolute',
-        top: '35%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        margin: "auto",
+        marginTop: "5%",
         width: "85%",
         bgcolor: 'background.paper',
         border: '1px solid #000',
@@ -264,8 +262,8 @@ function CulturaPage() {
                             <div className="row border-bottom">
                                 <p><strong>{cultura.idcultura == 0 ? "Cadastrando nova Cultura" : "Editando Cultura"}</strong></p>
                             </div>
-                            <div className="row mt-3">
-                                <div className="col-sm col-md-6 col-lg-8">
+                            <div className="row">
+                                <div className="col-sm col-md-6 col-lg-8 mt-3">
                                     <TextField
                                         fullWidth
                                         required
@@ -282,7 +280,7 @@ function CulturaPage() {
                                         ))}
                                     </TextField>
                                 </div>
-                                <div className="col-sm col-md-6 col-lg-4">
+                                <div className="col-sm col-md-6 col-lg-4 mt-3">
                                     <TextField
                                         fullWidth
                                         required

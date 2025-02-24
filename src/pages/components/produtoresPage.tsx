@@ -22,10 +22,8 @@ function ProdutoresPage() {
 
     //style do modal
     const style = {
-        position: 'absolute',
-        top: '35%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
+        margin: "auto",
+        marginTop: "5%",
         width: "85%",
         bgcolor: 'background.paper',
         border: '1px solid #000',
