@@ -26,7 +26,8 @@
     "rollup": "^4.34.8",
     "typescript": "^4.9.5",
     "vite": "^6.1.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack-dev-server": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
